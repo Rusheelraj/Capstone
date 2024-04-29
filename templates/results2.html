@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results - Cybersecurity</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0f0;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 48px;
+            color: #0f0;
+            text-shadow: 0px 0px 0px #00ff00;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+        }
+        h1 img {
+            width: 80px; /* Adjust image width */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 20px; /* Add spacing between image and text */
+            filter: brightness(500%) saturate(250%) invert(40%) sepia(500%) saturate(2000%) hue-rotate(100deg);
+        }
+        p {
+            font-size: 26px;
+            color: #0f0;
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 300px;
+            height: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #00ff00;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: fillAnimation 2s ease-in-out forwards;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #00ff00;
+            color: #000;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin: 0 10px;
+        }
+        .btn:hover {
+            background-color: #0f0;
+        }
+
+        @keyframes fillAnimation {
+            from { width: 0; }
+            to { width: {{ score / 15 * 100 }}%; }
+        }
+    </style>
+</head>
+<body>
+    <h1><img src="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/fit.sidearmsports.com/images/responsive_2021/AT-Panther_head-only.png" alt="Cybersecurity Icon"> Round 2 - Quiz Results</h1>
+    <p>Your Score: {{ score }} out of 15 points</p>
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+    <div class="btn-container">
+        {% if score > 12 %}
+            <!-- Display Round 2 button if score is greater than 12 -->
+            <form action="{{ url_for('roundthree') }}">
+                <button class="btn" type="submit">Round 3</button>
+            </form>
+        {% endif %}
+        <form action="{{ url_for('retake2') }}">
+            <button class="btn" type="submit">Retake the Exam</button>
+        </form>
+        <form action="{{ url_for('logout') }}">
+            <button class="btn" type="submit">Sign Out</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Cybersecurity</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0f0;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        .quiz-title {
+            font-size: 36px;
+            color: #0f0;
+            text-shadow: 0px 0px 0px #00ff00;
+            margin-bottom: 30px;
+        }
+        .question-text {
+            font-size: 30px;
+            color: #0f0;
+            text-shadow: 0px 0px 0px #00ff00;
+            margin-bottom: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            background-color: #111;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #0f0;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            background-color: #111;
+            color: #0f0;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease-in-out;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            font-size: 19px;
+            border-color: #0f0;
+        }
+        input[type="submit"] {
+            background-color: #00ff00;
+            color: #000;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        input[type="submit"]:hover {
+            background-color: #0f0;
+        }
+        .sign-out {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s ease-in-out;
+        }
+        .sign-out:hover {
+            color: #0f0;
+        }
+        /* Hacker-themed link styling */
+        .info-link {
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s ease-in-out;
+            animation: blinker 1.5s linear infinite;
+        }
+        .info-link:hover {
+            color: #0f0;
+            transform: scale(1.1);
+            animation: none;
+        }
+        .info-link::before {
+            content: '🕵';
+            margin-right: 5px;
+        }
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="quiz-title">🤖 Round 3 - Cybersecurity Challenge 🤖 </h1>
+    <h2 class="question-text">{{ question['question'] }}</h2>
+    {% if question.get('link') %}
+        <p><a href="{{ question['link'] }}" target="_blank" class="info-link"> Hacker Intel</a></p>
+    {% endif %}
+    <form method="post" action="{{ url_for('roundthree') }}">
+        {% if question['answer_type'] == 'text' %}
+            <label for="answer">🔑 Your Answer:</label>
+            <input type="text" id="answer" name="answer" required>
+        {% else %}
+            {% for option in question['options'] %}
+                <label>
+                    <input type="radio" name="answer" value="{{ option }}" required>
+                    {{ option }}
+                </label>
+            {% endfor %}
+        {% endif %}
+        <input type="hidden" name="question_index" value="{{ question_index }}">
+        <br>
+        <input type="submit" value="Submit 🚀">
+    </form>
+    <a class="sign-out" href="{{ url_for('logout') }}">Sign Out</a>
+<!--Web App - 1 Exploitation Flag: FIT{h1d3_4nd_533k} -->
+
+</body>
+</html>

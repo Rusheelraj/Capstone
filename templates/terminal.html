@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Terminal</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00FF00;
+            font-family: monospace;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        h2 {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            font-size: 28px;
+            padding-top: 30px;
+            padding-bottom: 10px;
+        }
+        #terminal {
+            width: 100%;
+            height: 80%;
+            border: 2px solid #00FF00;
+            background-color: #000;
+            padding: 20px;
+            font-size: 18px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            padding-bottom: 10px;
+            z-index: 1; /* Ensure terminal is above the image */
+        }
+        #input {
+            width: 80%;
+            border: none;
+            background-color: transparent;
+            color: #00FF00;
+            font-family: monospace;
+            font-size: 15px;
+            outline: none;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2; /* Ensure input is above the terminal */
+        }
+        .hacker-img {
+            position: absolute;
+            padding-top: 100px;
+            top: 480%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome Hacker!</h2>
+    <div id="terminal"></div>
+    <input type="text" id="input" placeholder="$ Practise commands here ! Type 'help' to learn!" autocomplete="off" autofocus>
+    <img class="hacker-img" src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/8bd43448904239.58a531b0cc801.gif" alt="Hacker Image">
+    <script>
+        const terminal = document.getElementById('terminal');
+        const input = document.getElementById('input');
+
+        function appendToTerminal(text) {
+            terminal.innerHTML += `<p>${text}</p>`;
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function handleInput(event) {
+            if (event.key === 'Enter') {
+                const command = input.value.trim();
+                appendToTerminal(`<span id="prompt">$ ${command}</span>`);
+
+                const args = command.split(' ');
+                const cmd = args[0];
+
+                switch (cmd) {
+                    case 'help':
+                        appendToTerminal('Available commands: ls, cat, cp, mv, rm, cd, pwd, clear, touch, sudo apt-get install, sudo apt-get update, ping, ifconfig');
+                        break;
+                    case 'ls':
+                        appendToTerminal('myfile.txt  file2.txt  defender  attacker');
+                        break;
+                    case 'cat':
+                    if (args.length === 2) {
+                            appendToTerminal(`Hello Hacker, You now read the ${args[1]} file contents `);
+                        } else {
+                            appendToTerminal('Usage: cat [filename]');
+                        }
+                        break;
+                    case 'cp':
+                        if (args.length === 3) {
+                            appendToTerminal(`${args[1]} copied to the destination`)
+                        } else {
+                            appendToTerminal(`Usage: cp [source] [destination]`)
+                        }
+                        break;
+                    case 'mv':
+                        if (args.length === 3) {
+                            appendToTerminal(`${args[1]} moved to the destination`)
+                        } else {
+                            appendToTerminal(`Usage: mv [source] [destination]`)
+                        }
+                        break;
+                    case 'date':
+                        appendToTerminal('Sat Jan 1 02:44:12 PM EST 2024')
+                        break;
+                    case 'rm':
+                        if (args.length === 2) {
+                            appendToTerminal(`File ${args[1]} deleted`);
+                        } else {
+                            appendToTerminal('Usage: rm [filename]');
+                        }
+                        break;
+                    case 'cd':
+                        if (args.length === 2) {
+                            appendToTerminal(`You are inside ${args[1]} directory`);
+                        } else {
+                            appendToTerminal('Usage: rm [filename]');
+                        }
+                        break;
+                    case 'pwd':
+                        appendToTerminal('/home/hacker');
+                        break;
+                    case 'whoami': 
+                        appendToTerminal('hacker')
+                        break;
+                    case 'clear':
+                        terminal.innerHTML = '';
+                        break;
+                    case 'chmod':
+                        if (args.length === 3 && args[1] === '444') {
+                            appendToTerminal(`File ${args[1]} is permitted to only read`);
+                        } else if (args.length === 3 && args[1] === '222') {
+                            appendToTerminal(`File ${args[1]} is permitted to only write`);
+                        } else if (args.length === 3 && args[1] === '111') {
+                            appendToTerminal(`File ${args[1]} is permitted to only execute`);
+                        } else {
+                            appendToTerminal('Usage: chmod 444/222/111 [filename]')
+                        }
+                        break;
+                    case 'uname':
+                        appendToTerminal('Kali Linux');
+                        break;
+                    case 'touch':
+                        if (args.length === 2) {
+                            appendToTerminal(`File ${args[1]} created`);
+                        } else {
+                            appendToTerminal('Usage: touch [filename]');
+                        }
+                        break;
+                    case 'sudo':
+                        if (args.length === 4 && args[1] === 'apt-get' && args[2] === 'install') {
+                            appendToTerminal(`${args[3]} installed`);
+                        } else if (args.length === 3 && args[1] === 'apt-get' && args[2] === 'update') {
+                            appendToTerminal('Update complete');
+                        } else {
+                            appendToTerminal('Command not found');
+                        }
+                        break;
+                    case 'ping':
+                        if (args.length === 2) {
+                            appendToTerminal(`64 bytes from ${args[1]}: icmp_seq=1 ttl=117 time=24.4 ms; 1 packet transmitted, 1 received, 0% packet loss, time 1001ms`);
+                        } else {
+                            appendToTerminal('Usage: ping [hostname]');
+                        }
+                        break;
+                    case 'ifconfig':
+                        appendToTerminal('eth0: inet 192.168.1.27  netmask 255.255.255.0  broadcast 192.168.1.255');
+                        break;
+                    default:
+                        appendToTerminal(`Command not found: ${cmd}`);
+                        break;
+                }
+
+                input.value = '';
+            }
+        }
+
+        input.addEventListener('keydown', handleInput);
+    </script>
+</body>
+</html>

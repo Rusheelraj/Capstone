@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Quiz</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0f0;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 3rem; /* Adjust font size */
+            text-shadow: 0px 0px 0px #00ff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        h1 img {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+            filter: brightness(500%) saturate(250%) invert(40%) sepia(500%) saturate(2000%) hue-rotate(100deg);
+        }
+        p {
+            font-size: 1.5rem; /* Adjust font size */
+            line-height: 1.6;
+            margin-bottom: 45px;
+        }
+        .courses {
+            display: flex;
+            flex-wrap: wrap; /* Allow courses to wrap to the next line */
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .course {
+            flex-basis: 45%; /* Adjust width of each course */
+            background-color: #111;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 10px;
+            margin-bottom: 20px; /* Add some bottom margin for spacing */
+        }
+        .icon {
+            font-size: 2rem; /* Adjust icon size */
+            margin-bottom: 10px;
+        }
+        .course-name {
+            font-size: 1.5rem; /* Adjust font size */
+            font-weight: bold;
+        }
+        .btn,
+        .btn2 {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #00ff00;
+            color: #000;
+            border: 2px solid #00ff00;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.5rem; /* Adjust font size */
+            transition: all 0.3s ease-in-out;
+            margin-top: 20px; /* Add top margin for spacing */
+        }
+        .btn:hover,
+        .btn2:hover {
+            background-color: #0f0;
+            border-color: #0f0;
+            color: #000;
+            animation: none;
+        }
+        /* Style for links */
+        a {
+            color: #0f0;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+        a:hover {
+            color: #0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1><img src="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/fit.sidearmsports.com/images/responsive_2021/AT-Panther_head-only.png" alt="Cybersecurity Icon"> Florida Tech - Cybersecurity </h1>
+    <p>Welcome to the Cybersecurity Quiz hosted by Florida Tech! This quiz is designed to assess the knowledge of students pursuing Masters in Cybersecurity / Computer Science.</p>
+    <div class="courses">
+        <a href="network_security" class="course">
+            <div class="icon">⚡</div>
+            <div class="course-name">Network Security</div>
+        </a>
+        <a href="cryptography" class="course">
+            <div class="icon">⚔</div>
+            <div class="course-name">Cryptography</div>
+        </a>
+        <a href="re" class="course">
+            <div class="icon">🔍</div>
+            <div class="course-name">Reverse Engineering</div>
+        </a>
+        <a href="web-app-exploit" class="course">
+            <div class="icon">🌐</div>
+            <div class="course-name">Web App Exploitation</div>
+        </a>
+        <a href="forensics" class="course">
+            <div class="icon">🔦</div>
+            <div class="course-name">Forensics</div>
+        </a>
+    </div>
+    <p>Are you ready to test your cybersecurity knowledge? Click the button below to login and get started!</p>
+    <a href="{{ url_for('login') }}" class="btn">Login to Start Quiz</a>
+    <a href="{{ url_for('terminal') }}" class="btn2"> Hacker's Terminal </a>
+</body>
+</html>

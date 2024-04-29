@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Cybersecurity Quiz</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0f0;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 36px;
+            text-shadow: 0px 0px 0px #00ff00;
+            display: flex;
+            align-items: center; /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            margin-bottom: 20px;
+        }
+        h1 img {
+            width: 80px; /* Adjust image width */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 20px; /* Add spacing between image and text */
+            filter: brightness(500%) saturate(250%) invert(40%) sepia(500%) saturate(2000%) hue-rotate(100deg);
+        }
+        form {
+            max-width: 300px;
+            margin: auto;
+            background-color: #111;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #0f0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #00ff00;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #222;
+            color: #0f0;
+        }
+        input[type="submit"] {
+            background-color: #00ff00;
+            color: #000;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        input[type="submit"]:hover {
+            background-color: #0f0;
+        }
+        .home-btn {
+            background-color: #00ff00; /* Green */
+            color: #222; /* Black text */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+        }
+        .home-btn:hover {
+            background-color: #000000; /* Darker Green */
+        }
+        p {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #0f0;
+        }
+        a {
+            text-decoration: none;
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 19px;
+            transition: color 0.3s ease-in-out;
+        }
+        a:hover {
+            color: #0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1><img src="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/fit.sidearmsports.com/images/responsive_2021/AT-Panther_head-only.png" alt="Cybersecurity Icon"> Florida Tech - Cybersecurity</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form method="post" action="{{ url_for('login') }}">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+        <input type="submit" value="Login">
+    </form>
+    <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+    <a href="/" class="home-btn">Home</a>
+</body>
+</html>
