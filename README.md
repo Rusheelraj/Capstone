@@ -8,3 +8,34 @@ My project is a dedicated hub for novice cybersecurity students embarking on the
 
 https://rusheelraj.pythonanywhere.com/
 
+## Cybersecurity Quiz and CTF challenges
+
+Sign-up / Login with your credentials. 
+
+https://rusheelraj.pythonanywhere.com/signup
+
+### Level - 1:
+15 Multiple choice questions. (Theoretical)
+
+Scoring 12 or above gets you to the Level - 2.
+
+### Level - 2:
+15 Multiple choice questions. (Theoretical + CTF based)
+
+Scoring 12 or above gets you to the Level - 3.
+
+### Level - 3:
+10 CTF-based challenges. Find the FLAGS!
+
+## Resource Repository
+
+On the homepage, you have resources to start as a beginner. It covers Network Security, Cryptography, Forensics, Reverse Engineering and Web Application Exploitation. 
+
+https://rusheelraj.pythonanywhere.com/
+
+## Hacker's Terminal
+
+If you are a beginner in Linux and don't have a Linux environment to practice command executions, then this is the playground you want to try. 
+
+Check this here: https://rusheelraj.pythonanywhere.com/terminal
+
